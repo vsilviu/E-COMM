@@ -1,7 +1,7 @@
 /**
  * Created by Silviu on 1/29/16.
  */
-angular.module("myApp.controllers").controller("AppController", function ($scope, Item) {
+angular.module("ecomm-ui.controllers").controller("AppController", function ($scope, Item) {
 
     Item.query(function (response) {
         $scope.items = response ? response : [];
