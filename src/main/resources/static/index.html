@@ -1,55 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css"/>
 </head>
 <body ng-app="ecomm-ui">
-<div class="container" ng-controller="AppController">
-    <div class="page-header">
-        <h1>A checklist</h1>
-    </div>
-    <div class="alert alert-info" role="alert" ng-hide="items && items.length > 0">
-        There are no items yet.
-    </div>
-    <form class="form-horizontal" role="form" ng-submit="addItem(newItem)">
-        <div class="form-group" ng-repeat="item in items">
-            <div class="checkbox col-xs-9">
-                <label>
-                    <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)"/> {{item.description}}
-                </label>
-            </div>
-            <div class="col-xs-3">
-                <button class="pull-right btn btn-danger" type="button" title="Delete"
-                        ng-click="deleteItem(item)">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-            </div>
-        </div>
-        <hr />
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the description..." />
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" ng-disabled="!newItem" title="Add">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-          </span>
-        </div>
-    </form>
+    <div class="container" ng-controller="AppController">
+        <div class="page-header">
 
-    <!--UI-Routing example-->
-    <div ui-view></div>
-    <!-- We'll also add some navigation: -->
-    <a ui-sref="state1">State 1</a>
-    <a ui-sref="state2">State 2</a>
+            <div class="container">
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="active"><a href="#/home">Home</a></li>
+                    <li><a href="#/login">Login</a></li>
+                    <li ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+                </ul>
+            </div>
 
-</div>
-<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<!--<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>-->
-<script type="text/javascript" src="./app/app.js"></script>
-<script type="text/javascript" src="./app/routes.js"></script>
-<script type="text/javascript" src="app/controllers/AppController.js"></script>
-<script type="text/javascript" src="./app/services.js"></script>
+            <!--<h1>A checklist</h1>-->
+        </div>
+
+        <!--UI-Routing example-->
+        <!--Use this to add content to the main page!-->
+        <div ui-view></div>
+
+    </div>
+
+
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!--<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>-->
+
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/routes.js"></script>
+
+    <script type="text/javascript" src="app/controllers/AppController.js"></script>
+    <script type="text/javascript" src="app/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="app/controllers/HomeController.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+
 </body>
 </html>
