@@ -1,0 +1,48 @@
+Structura aplicatiei:
+
+Numele aplicatiei este unul ales sugestiv: e-comm
+Aplicatia urmeaza arhitectura client-server si este de tip SPA.
+Serverul este implementat prin framework-ul Spring Web Mvc
+Clientul este implementat prin AngularJs
+
+Ca manager de dependinte, am folosit Maven pt server si Bower pt client.
+
+Server-side, am ales sa folosesc Spring Boot, deoarece vine
+integrat cu un EmbeddedTomcat configurabil in cod Java.
+Pachetul spring-boot-starter-pack contine toate
+dependintele utile pt dezvoltarea unei aplicatii SPA.
+Deasemenea, adnotarea @SpringBootApplication confera configurari
+implicite fara nevoia fisierului web.xml .
+
+Ca baza de date, folosesc MongoDB remote
+
+Server-side:
+    Ca repository, folosesc MongoRepository
+    Nu am servicii, deoarece business-ul este minimal
+    Ca si controllere, folosesc RestControllerele din Spring
+    Pentru securitate, folosesc Spring Security
+       (Userul disponibil e configurat in aplicatie: user - 1234)
+    Ca document Mongo, folosesc clasa Item
+    Pentru serializare folosesc Jackson
+
+Client-side:
+    modulul general este ecomm-ui
+    serviciile sunt definite in modulul ecomm-ui.services
+    controllerele in modulul ecomm-ui.controllers
+    pt routing, am folosit angular-ui (fisier main de config: routes.js)
+    userul e persistat pe sesiune la refresh
+
+Business-ul aplicatiei
+    Exista un singur user: cel definit manual in aplicatie: user - 1234
+    (am evitat autentificarea cu credentiale pe baza din motive de
+     complicare)
+    Zonele aplicatiei sunt disponibile in functie de autentificarea userului
+    Pre-logare, userul anonim vede Home + Login
+    Post-logare, isi poate vedea profilul, cosul de cumparaturi, lista de itemi
+        si se poate deloga
+    Userul poate selecta ce produse sa adauge in cos; presupunem ca avem un
+        singur exemplar de tip de produs
+    Userul poate scoate sau cumpara produsele din cosul sau
+    Numarul de produse din cos se actualizeaza real-time
+
+Aplicatia nu are internationalizare - all english
