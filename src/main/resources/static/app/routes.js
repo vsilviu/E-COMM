@@ -18,5 +18,10 @@ angular.module('ecomm-ui')
                 url: '/home',
                 templateUrl: "app/views/home.html",
                 controller: "HomeController"
+            })
+            .state('cart', {
+                url: '/cart',
+                templateUrl: "app/views/cart.html",
+                controller: "CartController"
             });
     });

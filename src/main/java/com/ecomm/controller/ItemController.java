@@ -1,5 +1,7 @@
 package com.ecomm.controller;
 
+import com.ecomm.dto.FilterDTO;
+import com.ecomm.dto.ResponseDTO;
 import com.ecomm.entity.Item;
 import com.ecomm.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/items")
 public class ItemController {
+
     @Autowired
     private ItemRepository repo;
 
@@ -34,6 +37,22 @@ public class ItemController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteItem(@PathVariable String id) {
         repo.delete(id);
+    }
+
+    @RequestMapping(value = "/in-cart", method = RequestMethod.GET)
+    public ResponseDTO getTotalCartItemNumber() {
+        List<Item> cartItems = repo.findAllByInCartTrue();
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setData(cartItems.size());
+        return responseDTO;
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public ResponseDTO findItem(@RequestBody FilterDTO filterDTO) {
+        List<Item> items = repo.findAllByNameLike(filterDTO.getItemName());
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setData(items);
+        return responseDTO;
     }
 
     @RequestMapping(value = "/add_item_dummies", method = RequestMethod.GET)

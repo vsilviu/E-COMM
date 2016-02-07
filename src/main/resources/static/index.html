@@ -4,40 +4,40 @@
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css"/>
 </head>
 <body ng-app="ecomm-ui">
-    <div class="container" ng-controller="AppController">
-        <div class="page-header">
+<div class="container" ng-controller="AppController">
+    <div class="page-header">
 
-            <div class="container">
-                <ul class="nav nav-pills" role="tablist">
-                    <li ><a ui-sref="home">Home</a></li>
-                    <li ng-show="authenticated == false"><a ui-sref="login">Login</a></li>
-                    <li ng-show="authenticated == true"><a href="" ng-click="logout()">Logout</a></li>
-                    <li ng-show="authenticated == true"><a ui-sref="cart">My cart</a></li>
-                </ul>
-            </div>
-
-            <!--<h1>A checklist</h1>-->
+        <div class="container">
+            <ul class="nav nav-pills" role="tablist">
+                <li><a ui-sref="home">Home</a></li>
+                <li ng-show="authenticated == false"><a ui-sref="login">Login</a></li>
+                <li ng-show="authenticated == true"><a ui-sref="cart">My cart :{{crtNumberOfCartItems}}</a></li>
+                <li ng-show="authenticated == true"><a href="" ng-click="logout()">Logout</a></li>
+            </ul>
         </div>
-
-        <!--UI-Routing example-->
-        <!--Use this to add content to the main page!-->
-        <div ui-view></div>
-
     </div>
 
+    <!--UI-Routing example-->
+    <!--Use this to add content to the main page!-->
+    <div ui-view></div>
 
-    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <!--<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>-->
+</div>
 
-    <script type="text/javascript" src="./app/app.js"></script>
-    <script type="text/javascript" src="./app/routes.js"></script>
 
-    <script type="text/javascript" src="app/controllers/AppController.js"></script>
-    <script type="text/javascript" src="app/controllers/LoginController.js"></script>
-    <script type="text/javascript" src="app/controllers/HomeController.js"></script>
-    <script type="text/javascript" src="./app/services.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+<!--<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>-->
+
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/routes.js"></script>
+
+<script type="text/javascript" src="app/controllers/AppController.js"></script>
+<script type="text/javascript" src="app/controllers/LoginController.js"></script>
+<script type="text/javascript" src="app/controllers/HomeController.js"></script>
+<script type="text/javascript" src="app/controllers/CartController.js"></script>
+<script type="text/javascript" src="app/services.js"></script>
 
 </body>
 </html>

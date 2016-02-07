@@ -1,0 +1,19 @@
+<div>
+    <div class="form-group" ng-repeat="item in items">
+        <div class="row" ng-if="item.inCart==true">
+            <label class="label label-default col-xs-9">{{item.name}}</label>
+            <label class="label label-default col-xs-9">{{item.price}}</label>
+            <div class="col-xs-3">
+                <button class="btn-default" type="button" title="Add to cart" ng-click="removeFromCart(item)">
+                    Remove from cart
+                </button>
+                <button class="btn-default" type="button" title="Add to cart" ng-click="purchase(item)">
+                    Purchase item
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-info" role="alert" ng-hide="items && items.length > 0">
+        No items in cart!
+    </div>
+</div>
