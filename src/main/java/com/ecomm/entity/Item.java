@@ -1,40 +1,46 @@
 package com.ecomm.entity;
 
 
-import javax.persistence.*;
-import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Entity
 public class Item {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
-    @Column
-    private boolean checked;
-    @Column
-    private String description;
 
-    public Integer getId() {
+    @Id
+    private String id;
+
+    private boolean inCart;
+    private String name;
+    private Double price;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public boolean isInCart() {
+        return inCart;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

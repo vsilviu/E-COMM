@@ -13,20 +13,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .httpBasic()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/bower_components/**", "/app/**", "/").permitAll() //url uri pt non-auth
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .logout();
+
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER");
-//    }
 }

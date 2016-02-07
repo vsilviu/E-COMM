@@ -23,7 +23,7 @@ public class Application {
         TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
         factory.setPort(8081);
         factory.setSessionTimeout(30, TimeUnit.MINUTES);
-        factory.setContextPath("/ecomm");
+        factory.setContextPath("");
         return factory;
     }
 
