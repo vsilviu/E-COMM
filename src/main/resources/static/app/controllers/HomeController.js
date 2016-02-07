@@ -15,7 +15,7 @@ angular.module("ecomm-ui.controllers")
         $scope.addToCart = function (item) {
             item.inCart = true;
             var service = new Item(item);
-            service.$update({id:item.id});
+            service.$update({id: item.id});
             $rootScope.crtNumberOfCartItems++;
         };
 
