@@ -11,17 +11,18 @@ angular.module("ecomm-ui.controllers")
             console.log('bought items',$scope.items);
         });
 
-        $scope.addItem = function (description) {
-            new Item({
-                description: description,
-                checked: false
-            }).$save(function (item) {
-                $scope.items.push(item);
-            });
-            $scope.newItem = "";
-        };
+        //$scope.addItem = function (description) {
+        //    new Item({
+        //        description: description,
+        //        checked: false
+        //    }).$save(function (item) {
+        //        $scope.items.push(item);
+        //    });
+        //    $scope.newItem = "";
+        //};
 
-        $scope.updateItem = function (item) {
+        $scope.addToCart = function (item) {
+            item.inCart = true;
             item.$update();
         };
 

@@ -4,16 +4,14 @@
     </div>
     <form class="form-horizontal" role="form" ng-submit="addItem(newItem)">
         <div class="form-group" ng-repeat="item in items">
-            <div class="checkbox col-xs-9">
-                <!--<label>-->
-                    <!--<input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)"/> {{item.description}}-->
-                <!--</label>-->
-            </div>
-            <div class="col-xs-3">
-                <!--<button class="pull-right btn btn-danger" type="button" title="Delete"-->
-                        <!--ng-click="deleteItem(item)">-->
-                    <!--<span class="glyphicon glyphicon-trash"></span>-->
-                <!--</button>-->
+            <div class="row">
+                <label class="label label-default col-xs-9">{{item.name}}</label>
+                <label class="label label-default col-xs-9">{{item.price}}</label>
+                <div class="col-xs-3">
+                    <button class="btn-default" type="button" title="Add to cart" ng-hide="item.inCart" ng-click="addToCart(item)">
+                        Add to cart
+                    </button>
+                </div>
             </div>
         </div>
         <hr/>

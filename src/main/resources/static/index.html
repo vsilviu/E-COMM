@@ -9,9 +9,10 @@
 
             <div class="container">
                 <ul class="nav nav-pills" role="tablist">
-                    <li class="active"><a ui-sref="home">Home</a></li>
+                    <li ><a ui-sref="home">Home</a></li>
                     <li ng-show="authenticated == false"><a ui-sref="login">Login</a></li>
                     <li ng-show="authenticated == true"><a href="" ng-click="logout()">Logout</a></li>
+                    <li ng-show="authenticated == true"><a ui-sref="cart">My cart</a></li>
                 </ul>
             </div>
 

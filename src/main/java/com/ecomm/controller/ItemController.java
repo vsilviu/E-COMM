@@ -3,10 +3,10 @@ package com.ecomm.controller;
 import com.ecomm.entity.Item;
 import com.ecomm.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/items")
@@ -38,12 +38,12 @@ public class ItemController {
 
     @RequestMapping(value = "/add_item_dummies", method = RequestMethod.GET)
     public void addDummyItemsInDb() {
-        for(int i=1; i<=4; ++i) {
+        for (int i = 1; i <= 4; ++i) {
             Item item = new Item();
             item.setId((new Integer(i)).toString());
             item.setInCart(false);
-            item.setName("Laptop "+i);
-            item.setPrice(2*i+Math.sqrt(5*i));
+            item.setName("Laptop " + i);
+            item.setPrice(2 * i + Math.sqrt(5 * i));
             repo.save(item);
         }
     }
