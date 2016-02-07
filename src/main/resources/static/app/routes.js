@@ -23,5 +23,9 @@ angular.module('ecomm-ui')
                 url: '/cart',
                 templateUrl: "app/views/cart.html",
                 controller: "CartController"
+            })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: "app/views/profile.html"
             });
     });

@@ -1,0 +1,12 @@
+<div ng-if="authenticated">
+    <p>I am an user defined in memory with help from Spring Security!</p>
+    <br/>
+    <label>
+        Name: {{principal.name}}
+    </label>
+    <ul ng-repeat="auth in principal.authorities">
+        <li>
+            <span>Authority: {{auth.authority}}</span>
+        </li>
+    </ul>
+</div>

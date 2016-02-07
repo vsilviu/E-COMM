@@ -13,6 +13,7 @@ angular.module("ecomm-ui.controllers")
 
             $http.get('login/user', {headers: headers}).success(function (data) {
                 if (data.name) {
+                    $rootScope.principal = data;
                     $rootScope.authenticated = true;
                     Item.countCartItems(function (data) {
                         console.log('bought cart number', data);
