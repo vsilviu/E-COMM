@@ -2,23 +2,39 @@
  * Created by Silviu on 1/29/16.
  */
 angular.module("ecomm-ui.services")
-    .factory("Item", function ($resource) {
-        return $resource('/items/:id', {
-            id: '@id'
-        }, {
-            update: {
-                method: "PUT"
+    .factory("ItemService", function ($resource) {
+        return $resource(null, {}, {
+            findAll: {
+                method: "POST",
+                url: "/items/find-all"
             },
-            remove: {
-                method: "DELETE"
+            update: {
+                method: "POST",
+                url: "/items/save"
             },
             countCartItems: {
                 method: "GET",
                 url: "/items/in-cart"
-            },
-            findItem: {
-                method: "POST",
-                url: "/items/find"
             }
         });
+    })
+    .factory("CategoryService", function($resource) {
+        return $resource(null, {}, {
+            findAll: {
+                method: "GET",
+                url: "/category/find-all"
+            }
+        })
+    })
+    .factory("OrderService", function($resource) {
+        return $resource(null, {}, {
+            findAll: {
+                method: "GET",
+                url: "/order/find-all"
+            },
+            save: {
+                method: "POST",
+                url: "/order/save/:itemId"
+            }
+        })
     });
