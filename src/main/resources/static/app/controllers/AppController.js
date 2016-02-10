@@ -2,7 +2,7 @@
  * Created by Silviu on 1/29/16.
  */
 angular.module("ecomm-ui.controllers")
-    .controller("AppController", function ($scope, $rootScope, $http) {
+    .controller("AppController", function ($scope, $rootScope, $http, $state) {
 
         /**
          * @author Silviu
@@ -40,9 +40,10 @@ angular.module("ecomm-ui.controllers")
          * Logout url is managed by Spring Security
          */
         $scope.logout = function () {
+            $state.go('login');
             $http.post('logout', {}).success(function () {
                 $rootScope.authenticated = false;
-                $state.go('login');
+                //$state.go('login');
             }).error(function () {
                 $rootScope.authenticated = false;
             });
