@@ -35,6 +35,10 @@ angular.module("ecomm-ui.services")
             save: {
                 method: "POST",
                 url: "/order/save/:itemId"
+            },
+            delete: {
+                method: "DELETE",
+                url: "/order/delete/:orderId"
             }
         })
     });

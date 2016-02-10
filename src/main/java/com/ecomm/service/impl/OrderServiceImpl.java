@@ -47,4 +47,8 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(dbOrder);
     }
 
+    @Override
+    public void delete(String orderId) {
+        orderRepository.delete(orderId);
+    }
 }

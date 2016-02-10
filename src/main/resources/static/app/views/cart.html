@@ -4,14 +4,14 @@
             Item name: {{order.item.name}} <br/>
             Item price {{order.item.price}} <br/>
             Ordered quantity: {{order.orderedQuantity}} <br/>
+            Total Price: {{order.orderedQuantity * order.item.price}} <br/>
 
-            <button class="btn-default" type="button" title="Add to cart" ng-click="deleteOrder(item)">
-                Remove from cart
+            <button class="btn-default" type="button" title="Add to cart" ng-click="deleteOrder(order)">
+                Remove order
             </button>
-            <button class="btn-default" type="button" title="Add to cart" ng-click="validateOrder(item)">
+            <button class="btn-default" type="button" title="Add to cart" ng-click="validateOrder(order)">
                 Purchase these items
             </button>
-
         </div>
     </div>
     <div class="alert alert-info" role="alert" ng-show="orders.length == 0">

@@ -6,19 +6,26 @@ angular.module("ecomm-ui")
 
         $scope.orders = [];
 
-        OrderService.findAll(function(serverData) {
-            console.log(serverData);
-            $scope.orders = serverData.data;
-        });
-
-        $scope.deleteOrder = function (item) {
-            //do delete stuff
+        $scope.loadOrders = function() {
+            $scope.orders = [];
+            OrderService.findAll(function (serverData) {
+                console.log(serverData);
+                $scope.orders = serverData.data;
+            });
         };
 
-        $scope.purchase = function (item) {
-            if (confirm('Are you sure you want to buy this item? ' + item.name)) {
-                //do delete stuff
-            }
+        $scope.loadOrders();
 
+        $scope.deleteOrder = function (order) {
+            OrderService.delete({orderId: order.id}, function() {
+                $scope.loadOrders();
+            });
+
+        };
+
+        $scope.purchase = function (order) {
+            if (confirm('Are you sure you want to buy these items? ' + item.name)) {
+                $scope.deleteOrder(order);
+            }
         }
     });

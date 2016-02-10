@@ -30,4 +30,9 @@ public class OrderController {
         return responseDTO;
     }
 
+    @RequestMapping(value = "/delete/{orderId}", method = RequestMethod.DELETE)
+    public void deleteOrder(@PathVariable String orderId) {
+        orderService.delete(orderId);
+    }
+
 }
