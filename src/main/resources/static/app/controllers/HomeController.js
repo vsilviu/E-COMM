@@ -2,34 +2,39 @@
  * Created by Silviu on 1/31/16.
  */
 angular.module("ecomm-ui.controllers")
-    .controller('HomeController', function ($scope, Item, $rootScope) {
+    .controller('HomeController', function ($scope, ItemService, $rootScope, CategoryService, OrderService) {
 
-        console.log('loaded home ctrl!');
-        $scope.filter = {itemName: ''};
+        $scope.filter = {name: '', category: null};
+        $scope.items = [];
+        $scope.categories = [];
 
-        Item.query(function (response) {
-            $scope.items = response ? response : [];
-            console.log('bought items', $scope.items);
+        CategoryService.findAll(function (serverData) {
+            $scope.categories = serverData.data;
         });
 
-        $scope.addToCart = function (item) {
-            item.inCart = true;
-            var service = new Item(item);
-            service.$update({id: item.id});
-            $rootScope.crtNumberOfCartItems++;
-        };
 
-        $scope.findItems = function () {
-            var postdata = {itemName: $scope.filter.itemName};
-            var service = new Item(postdata);
-            service.$findItem(function (serverData) {
+        $scope.findItemsFiltered = function () {
+            var service = new ItemService($scope.filter);
+            service.$findAll(function (serverData) {
+                console.log(serverData);
                 $scope.items = serverData.data;
             })
         };
 
         $scope.clearFilter = function () {
-            $scope.filter.itemName = '';
-            $scope.findItems();
-        }
+            $scope.filter.name = '';
+            $scope.filter.category = null;
+            $scope.findItemsFiltered();
+        };
+
+        //find all items when entering home page for the first time
+        $scope.findItemsFiltered();
+
+
+        $scope.addToCart = function (item) {
+            var service = new OrderService({});
+            service.$save({itemId:item.id});
+        };
+
 
     });

@@ -12,7 +12,7 @@
                 <li><a ui-sref="home">Home</a></li>
                 <li ng-show="authenticated == false"><a ui-sref="login">Login</a></li>
                 <li ng-show="authenticated == true"><a ui-sref="profile">My profile</a></li>
-                <li ng-show="authenticated == true"><a ui-sref="cart">My cart :{{crtNumberOfCartItems}}</a></li>
+                <li ng-show="authenticated == true"><a ui-sref="cart">My cart </a></li>
                 <li ng-show="authenticated == true"><a href="" ng-click="logout()">Logout</a></li>
             </ul>
         </div>
@@ -23,9 +23,6 @@
     <div ui-view></div>
 
 </div>
-<!--<div>-->
-    <!--Application built by xsylver. All rights reserved. v1.0-->
-<!--</div>-->
 
 
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>

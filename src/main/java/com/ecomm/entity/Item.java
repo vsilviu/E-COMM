@@ -1,8 +1,13 @@
 package com.ecomm.entity;
 
 
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
+import java.math.BigInteger;
+import java.util.List;
+
+@Document
 public class Item {
 
     @Id
@@ -11,6 +16,7 @@ public class Item {
     private boolean inCart;
     private String name;
     private Double price;
+    private List<NomCategory> categories;
 
     public String getId() {
         return id;
@@ -42,5 +48,13 @@ public class Item {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<NomCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<NomCategory> categories) {
+        this.categories = categories;
     }
 }

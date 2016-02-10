@@ -2,8 +2,16 @@
  * Created by Silviu on 1/29/16.
  */
 angular.module("ecomm-ui.controllers")
-    .controller("AppController", function ($scope, $rootScope, $http, $cookies, Item) {
+    .controller("AppController", function ($scope, $rootScope, $http) {
 
+        /**
+         * @author Silviu
+         * @param credentials
+         * @param callback
+         *
+         * Function to get user credentials from server session
+         * It is called upon refreshing the browser page
+         */
         $rootScope.authenticate = function (credentials, callback) {
 
             var headers = credentials ? {
@@ -15,11 +23,6 @@ angular.module("ecomm-ui.controllers")
                 if (data.name) {
                     $rootScope.principal = data;
                     $rootScope.authenticated = true;
-                    Item.countCartItems(function (data) {
-                        console.log('bought cart number', data);
-                        $rootScope.crtNumberOfCartItems = data.data;
-                        console.log('crt number login', $rootScope.crtNumberOfCartItems);
-                    })
                 } else {
                     $rootScope.authenticated = false;
                 }
@@ -28,28 +31,21 @@ angular.module("ecomm-ui.controllers")
                 $rootScope.authenticated = false;
                 callback && callback();
             });
-
         };
 
         $rootScope.authenticate();
 
-        console.log('loaded main controller');
-
+        /**
+         * Function for logging out
+         * Logout url is managed by Spring Security
+         */
         $scope.logout = function () {
             $http.post('logout', {}).success(function () {
                 $rootScope.authenticated = false;
                 $state.go('login');
-            }).error(function (data) {
+            }).error(function () {
                 $rootScope.authenticated = false;
             });
         };
-
-        $rootScope.crtNumberOfCartItems = 0;
-
-        Item.countCartItems(function (data) {
-            console.log('bought cart number', data);
-            $rootScope.crtNumberOfCartItems = data.data;
-            console.log('crt number', $rootScope.crtNumberOfCartItems);
-        })
 
     });

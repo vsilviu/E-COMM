@@ -1,13 +1,14 @@
 package com.ecomm.controller;
 
-import com.ecomm.dto.FilterDTO;
+import com.ecomm.dto.ItemFilterDTO;
 import com.ecomm.dto.ResponseDTO;
 import com.ecomm.entity.Item;
-import com.ecomm.repository.ItemRepository;
+import com.ecomm.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -15,61 +16,27 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private ItemRepository repo;
+    private ItemService itemService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List findItems() {
-        return repo.findAll();
+    @RequestMapping(value = "/find-all", method = RequestMethod.POST)
+    public ResponseDTO findAllItemsFiltered(@RequestBody ItemFilterDTO itemFilter) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setData(itemService.findAllFiltered(itemFilter));
+        return  responseDTO;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Item addItem(@RequestBody Item item) {
-        item.setId(null);
-        return repo.save(item);
+    @RequestMapping(value = "/save", method = RequestMethod.PUT)
+    public ResponseDTO updateItem(@RequestBody Item updatedItem) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setData(itemService.saveItem(updatedItem));
+        return responseDTO;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Item updateItem(@RequestBody Item updatedItem, @PathVariable String id) {
-        updatedItem.setId(id);
-        return repo.save(updatedItem);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteItem(@PathVariable String id) {
-        repo.delete(id);
-    }
-
-    @RequestMapping(value = "/in-cart", method = RequestMethod.GET)
+    @RequestMapping(value = "/count-cart-items", method = RequestMethod.GET)
     public ResponseDTO getTotalCartItemNumber() {
-        List<Item> cartItems = repo.findAllByInCartTrue();
         ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setData(cartItems.size());
+        responseDTO.setData(itemService.countCartItems());
         return responseDTO;
-    }
-
-    @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public ResponseDTO findItem(@RequestBody FilterDTO filterDTO) {
-        List<Item> items = repo.findAllByNameLike(filterDTO.getItemName());
-        ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setData(items);
-        return responseDTO;
-    }
-
-    @RequestMapping(value = "/add_item_dummies", method = RequestMethod.GET)
-    public void addDummyItemsInDb() {
-        for (int i = 1; i <= 4; ++i) {
-            Item item = new Item();
-            item.setId((new Integer(i)).toString());
-            item.setInCart(false);
-            item.setName("Laptop " + i);
-            item.setPrice(2 * i + Math.sqrt(5 * i));
-            repo.save(item);
-        }
-    }
-
-    @RequestMapping(value = "/clear_db", method = RequestMethod.GET)
-    public void clearDb() {
-        repo.deleteAll();
     }
 
 }
