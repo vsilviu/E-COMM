@@ -36,13 +36,5 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-        <!--embedded mongodb-->
-        <!--<dependency>-->
-            <!--<groupId>de.flapdoodle.embed</groupId>-->
-            <!--<artifactId>de.flapdoodle.embed.mongo</artifactId>-->
-            <!--<version>1.50.2</version>-->
-        <!--</dependency>-->
     </dependencies>
-
-
 </project>

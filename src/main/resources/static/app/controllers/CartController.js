@@ -20,7 +20,6 @@ angular.module("ecomm-ui")
             OrderService.delete({orderId: order.id}, function() {
                 $scope.loadOrders();
             });
-
         };
 
         $scope.purchase = function (order) {
